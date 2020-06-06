@@ -22,6 +22,7 @@ is_train = False
 render = True
 load_model = True
 '''
+map_path = "Maps/map.png"
 gif_path = "out/"
 model_path = "save/"
 if not os.path.exists(model_path):
@@ -32,7 +33,7 @@ if load_model:
     rl_core.save_load_model("load", model_path)
 
 if __name__ == "__main__":
-    env = NavigationEnv(path="Maps/map.png")
+    env = NavigationEnv(path=map_path)
     total_step = 0
     max_success_rate = 0
     success_count = 0
@@ -87,5 +88,5 @@ if __name__ == "__main__":
                     rl_core.save_load_model("save", model_path)
             print("Success Rate (current/max):", success_rate, "/", max_success_rate)
             # output GIF
-            rl_eval.run(rl_core, total_eps=4, gif_path=gif_path, gif_name="ddpg_"+str(eps).zfill(4)+".gif")
+            rl_eval.run(rl_core, total_eps=4, map_path=map_path, gif_path=gif_path, gif_name="sac_"+str(eps).zfill(4)+".gif")
             
